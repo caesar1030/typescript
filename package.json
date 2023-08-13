@@ -5,7 +5,14 @@
   "repository": "https://github.com/caesar1030/typescript.git",
   "author": "zlx454545 <zlx454545@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start:build": "tsc -w",
+    "start:run": "nodemon build/index.js",
+    "start": "concurrently npm:start:*"
+  },
   "devDependencies": {
+    "concurrently": "^8.2.0",
+    "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   }
