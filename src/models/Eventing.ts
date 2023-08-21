@@ -1,11 +1,10 @@
-export type Callback = () => void;
+type Callback = () => void;
 
 export class Eventing {
   events: { [key: string]: Callback[] } = {};
 
   on = (eventName: string, callback: Callback): void => {
     const handlers = this.events[eventName] || [];
-
     handlers.push(callback);
     this.events[eventName] = handlers;
   };
@@ -13,9 +12,11 @@ export class Eventing {
   trigger = (eventName: string): void => {
     const handlers = this.events[eventName];
 
-    if (!handlers) return;
+    if (!handlers || handlers.length === 0) {
+      return;
+    }
 
-    handlers.forEach((callback) => {
+    handlers.forEach(callback => {
       callback();
     });
   };
